@@ -7,6 +7,9 @@
 #include <limits>
 #include <iterator>
 #include <iostream>
+#include <utility>
+#include <concepts>
+#include <iterator>
 
 template <typename T>
 class Vector {
@@ -37,6 +40,8 @@ public:
     Vector(std::initializer_list<T> init); // Initializer list constructor
     Vector(const Vector& other); // Copy constructor
     Vector(Vector&& other) noexcept; // Move constructor
+    template <std::input_iterator InputIt>
+    Vector(InputIt first, InputIt last);
 
     // Destructor
     ~Vector();
@@ -48,7 +53,7 @@ public:
 
 //!member functions
     void assign(size_t count, const T& value);
-    template <typename InputIt>
+    template <std::input_iterator InputIt>
     void assign(InputIt first, InputIt last);
     void assign(std::initializer_list<T> ilist);
 //!capacity
@@ -61,7 +66,6 @@ public:
     size_t capacity() const noexcept;
 
     void reserve(size_t new_cap);
-    void resize(size_t new_size);
 
     void shrink_to_fit();
 
@@ -70,7 +74,7 @@ public:
     
     iterator insert(iterator pos, const T& value);
     iterator insert(iterator pos, size_t count, const T& value);
-    template <typename InputIt>
+    template <std::input_iterator InputIt>
     iterator insert(iterator pos, InputIt first, InputIt last);
     iterator insert(iterator pos, T&& value);
     iterator insert(iterator pos, std::initializer_list<T> ilist);
@@ -87,6 +91,14 @@ public:
 
     template <typename... Args>
     iterator emplace(iterator pos, Args&&... args);
+
+    template <typename... Args>
+    void emplace_back(Args&&... args);
+
+    void resize(size_t new_size);
+    void resize(size_t new_size, const T& value);
+
+    void swap(Vector& other) noexcept;
 
 //!element access
     T& at(size_t index);

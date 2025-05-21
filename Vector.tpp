@@ -69,6 +69,21 @@ Vector<T>::Vector(Vector&& other) noexcept
     other.sizeVar = 0;
 }
 
+template <typename T>
+template <std::input_iterator InputIt>
+Vector<T>::Vector(InputIt first, InputIt last)
+    : dataVar(nullptr), capacityVar(0), sizeVar(0)
+{
+    size_t count = std::distance(first, last);
+    if (count > 0) {
+        dataVar = new T[count];
+        capacityVar = sizeVar = count;
+        size_t i = 0;
+        for (auto it = first; it != last; ++it, ++i)
+            dataVar[i] = *it;
+    }
+}
+
 // Move assignment
 template <typename T>
 Vector<T>& Vector<T>::operator=(Vector&& other) noexcept {
@@ -108,7 +123,7 @@ void Vector<T>::assign(size_t count, const T& value) {
 
 // 2. Assign from range [first, last)
 template <typename T>
-template <typename InputIt>
+template <std::input_iterator InputIt>
 void Vector<T>::assign(InputIt first, InputIt last) {
     size_t count = std::distance(first, last);
     if (count > capacityVar)
@@ -157,16 +172,6 @@ void Vector<T>::reserve(size_t new_cap) {
         dataVar = newData;
         capacityVar = new_cap;
     }
-}
-
-template <typename T>
-void Vector<T>::resize(size_t new_size) {
-    if (new_size > capacityVar)
-        reserve(new_size);
-    if (new_size > sizeVar)
-        for (size_t i = sizeVar; i < new_size; ++i)
-            dataVar[i] = T();
-    sizeVar = new_size;
 }
 
 template <typename T>
@@ -229,7 +234,7 @@ typename Vector<T>::iterator Vector<T>::insert(iterator pos, size_t count, const
 
 // 3. Insert range [first, last) at position
 template <typename T>
-template <typename InputIt>
+template <std::input_iterator InputIt>
 typename Vector<T>::iterator Vector<T>::insert(iterator pos, InputIt first, InputIt last) {
     size_t idx = pos - dataVar;
     if (idx > sizeVar)
@@ -367,6 +372,44 @@ typename Vector<T>::iterator Vector<T>::emplace(iterator pos, Args&&... args) {
     dataVar[idx] = T(std::forward<Args>(args)...);
     ++sizeVar;
     return dataVar + idx;
+}
+
+template <typename T>
+template <typename... Args>
+void Vector<T>::emplace_back(Args&&... args) {
+    if (sizeVar == capacityVar)
+        reserve(capacityVar == 0 ? 1 : capacityVar * 2);
+    dataVar[sizeVar++] = T(std::forward<Args>(args)...);
+}
+
+template <typename T>
+void Vector<T>::resize(size_t new_size) {
+    if (new_size > capacityVar)
+        reserve(new_size);
+    if (new_size > sizeVar) {
+        for (size_t i = sizeVar; i < new_size; ++i)
+            dataVar[i] = T();
+    }
+    sizeVar = new_size;
+}
+
+template <typename T>
+void Vector<T>::resize(size_t new_size, const T& value) {
+    if (new_size > capacityVar)
+        reserve(new_size);
+    if (new_size > sizeVar) {
+        for (size_t i = sizeVar; i < new_size; ++i)
+            dataVar[i] = value;
+    }
+    sizeVar = new_size;
+}
+
+template <typename T>
+void Vector<T>::swap(Vector& other) noexcept {
+    using std::swap;
+    swap(dataVar, other.dataVar);
+    swap(capacityVar, other.capacityVar);
+    swap(sizeVar, other.sizeVar);
 }
 
 //!element access
