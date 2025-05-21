@@ -47,14 +47,23 @@ public:
     Vector& operator=(std::initializer_list<T> init); // Initializer list assignment
 
 //!member functions
-
+    void assign(size_t count, const T& value);
+    template <typename InputIt>
+    void assign(InputIt first, InputIt last);
+    void assign(std::initializer_list<T> ilist);
 //!capacity
     bool empty() const noexcept;
+
     size_t size() const noexcept;
+
+    size_t max_size() const noexcept;
+
     size_t capacity() const noexcept;
 
     void reserve(size_t new_cap);
     void resize(size_t new_size);
+
+    void shrink_to_fit();
 
 //!modifiers
     void clear();
@@ -70,9 +79,14 @@ public:
     iterator erase(const_iterator pos);
     iterator erase(iterator first, iterator last);
     iterator erase(const_iterator first, const_iterator last);
-    
+
     void push_back(const T& value);
+    void push_back(T&& value);
+
     void pop_back();
+
+    template <typename... Args>
+    iterator emplace(iterator pos, Args&&... args);
 
 //!element access
     T& at(size_t index);
@@ -91,10 +105,21 @@ public:
 
 
 //!iterators
-    T* begin() noexcept;
-    T* end() noexcept;
-    const T* begin() const noexcept;
-    const T* end() const noexcept;
+    iterator begin() noexcept;
+    const_iterator begin() const noexcept;
+    const_iterator cbegin() const noexcept;
+
+    iterator end() noexcept;
+    const_iterator end() const noexcept;
+    const_iterator cend() const noexcept;
+
+    std::reverse_iterator<iterator> rbegin() noexcept;
+    std::reverse_iterator<const_iterator> rbegin() const noexcept;
+    std::reverse_iterator<const_iterator> crbegin() const noexcept;
+
+    std::reverse_iterator<iterator> rend() noexcept;
+    std::reverse_iterator<const_iterator> rend() const noexcept;
+    std::reverse_iterator<const_iterator> crend() const noexcept;
 };
 
 //!non-member functions

@@ -96,6 +96,34 @@ Vector<T>& Vector<T>::operator=(std::initializer_list<T> init) {
 }
 
 //!member functions
+// 1. Assign count copies of value
+template <typename T>
+void Vector<T>::assign(size_t count, const T& value) {
+    if (count > capacityVar)
+        reserve(count);
+    for (size_t i = 0; i < count; ++i)
+        dataVar[i] = value;
+    sizeVar = count;
+}
+
+// 2. Assign from range [first, last)
+template <typename T>
+template <typename InputIt>
+void Vector<T>::assign(InputIt first, InputIt last) {
+    size_t count = std::distance(first, last);
+    if (count > capacityVar)
+        reserve(count);
+    size_t i = 0;
+    for (auto it = first; it != last; ++it, ++i)
+        dataVar[i] = *it;
+    sizeVar = count;
+}
+
+// 3. Assign from initializer_list
+template <typename T>
+void Vector<T>::assign(std::initializer_list<T> ilist) {
+    assign(ilist.begin(), ilist.end());
+}
 //!capacity
 template <typename T>
 bool Vector<T>::empty() const noexcept {
@@ -106,6 +134,11 @@ bool Vector<T>::empty() const noexcept {
 template <typename T>
 size_t Vector<T>::size() const noexcept {
     return sizeVar;
+}
+
+template <typename T>
+size_t Vector<T>::max_size() const noexcept {
+    return std::numeric_limits<size_t>::max() / sizeof(T);
 }
 
 // Capacity accessor
@@ -134,6 +167,18 @@ void Vector<T>::resize(size_t new_size) {
         for (size_t i = sizeVar; i < new_size; ++i)
             dataVar[i] = T();
     sizeVar = new_size;
+}
+
+template <typename T>
+void Vector<T>::shrink_to_fit() {
+    if (capacityVar > sizeVar) {
+        T* newData = (sizeVar > 0) ? new T[sizeVar] : nullptr;
+        for (size_t i = 0; i < sizeVar; ++i)
+            newData[i] = dataVar[i];
+        delete[] dataVar;
+        dataVar = newData;
+        capacityVar = sizeVar;
+    }
 }
 
 //!modifiers
@@ -291,12 +336,37 @@ void Vector<T>::push_back(const T& value) {
     dataVar[sizeVar++] = value;
 }
 
+template <typename T>
+void Vector<T>::push_back(T&& value) {
+    if (sizeVar == capacityVar)
+        reserve(capacityVar == 0 ? 1 : capacityVar * 2);
+    dataVar[sizeVar++] = std::move(value);
+}
+
 // Pop back
 template <typename T>
 void Vector<T>::pop_back() {
     if (sizeVar == 0)
         throw std::out_of_range("Vector is empty");
     --sizeVar;
+}
+
+template <typename T>
+template <typename... Args>
+typename Vector<T>::iterator Vector<T>::emplace(iterator pos, Args&&... args) {
+    size_t idx = pos - dataVar;
+    if (idx > sizeVar)
+        throw std::out_of_range("Emplace position out of range");
+
+    if (sizeVar == capacityVar)
+        reserve(capacityVar == 0 ? 1 : capacityVar * 2);
+
+    for (size_t i = sizeVar; i > idx; --i)
+        dataVar[i] = std::move(dataVar[i - 1]);
+
+    dataVar[idx] = T(std::forward<Args>(args)...);
+    ++sizeVar;
+    return dataVar + idx;
 }
 
 //!element access
@@ -365,14 +435,73 @@ const T* Vector<T>::data() const noexcept {
 }
 
 //!iterators
+// begin
 template <typename T>
-T* Vector<T>::begin() noexcept { return dataVar; }
+typename Vector<T>::iterator Vector<T>::begin() noexcept {
+    return dataVar;
+}
+
 template <typename T>
-T* Vector<T>::end() noexcept { return dataVar + sizeVar; }
+typename Vector<T>::const_iterator Vector<T>::begin() const noexcept {
+    return dataVar;
+}
+
+// cbegin
 template <typename T>
-const T* Vector<T>::begin() const noexcept { return dataVar; }
+typename Vector<T>::const_iterator Vector<T>::cbegin() const noexcept {
+    return dataVar;
+}
+
+// end
 template <typename T>
-const T* Vector<T>::end() const noexcept { return dataVar + sizeVar; }
+typename Vector<T>::iterator Vector<T>::end() noexcept {
+    return dataVar + sizeVar;
+}
+
+template <typename T>
+typename Vector<T>::const_iterator Vector<T>::end() const noexcept {
+    return dataVar + sizeVar;
+}
+
+// cend
+template <typename T>
+typename Vector<T>::const_iterator Vector<T>::cend() const noexcept {
+    return dataVar + sizeVar;
+}
+
+// rbegin
+template <typename T>
+std::reverse_iterator<typename Vector<T>::iterator> Vector<T>::rbegin() noexcept {
+    return std::reverse_iterator<iterator>(end());
+}
+
+template <typename T>
+std::reverse_iterator<typename Vector<T>::const_iterator> Vector<T>::rbegin() const noexcept {
+    return std::reverse_iterator<const_iterator>(end());
+}
+
+// crbegin
+template <typename T>
+std::reverse_iterator<typename Vector<T>::const_iterator> Vector<T>::crbegin() const noexcept {
+    return std::reverse_iterator<const_iterator>(cend());
+}
+
+// rend
+template <typename T>
+std::reverse_iterator<typename Vector<T>::iterator> Vector<T>::rend() noexcept {
+    return std::reverse_iterator<iterator>(begin());
+}
+
+template <typename T>
+std::reverse_iterator<typename Vector<T>::const_iterator> Vector<T>::rend() const noexcept {
+    return std::reverse_iterator<const_iterator>(begin());
+}
+
+// crend
+template <typename T>
+std::reverse_iterator<typename Vector<T>::const_iterator> Vector<T>::crend() const noexcept {
+    return std::reverse_iterator<const_iterator>(cbegin());
+}
 
 
 //!non-member functions
