@@ -1,28 +1,27 @@
 cmake_minimum_required(VERSION 3.10)
 
-# Project name and version
 project(MyProject VERSION 1.0)
 
-# Set C++ standard (optional but recommended)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Collect source files
+# Source files for main executable
 set(SOURCES
-    v1.5.cpp
+    main.cpp
+    Vector.tpp
+)
+
+add_executable(test_exe ${SOURCES})
+target_compile_options(test_exe PRIVATE -Wall -Wextra -Wpedantic -O0)
+
+# Source files for main executable
+set(SOURCES2
+    v3.0.cpp
     helper.cpp
     helperFunctions.cpp
     cFunctions.tpp
+    Vector.tpp
 )
 
-# Create executable
-add_executable(MyExecutable ${SOURCES})
-
-# Optional: Include directories if needed
-# include_directories(${CMAKE_SOURCE_DIR}/include)
-
-# Output information
-message(STATUS "Building MyExecutable from ${SOURCES}")
-
-# Enable extra warnings (optional but useful)
-target_compile_options(MyExecutable PRIVATE -Wall -Wextra -Wpedantic -O3)
+add_executable(main_exe ${SOURCES2})
+target_compile_options(main_exe PRIVATE -Wall -Wextra -Wpedantic -O0)

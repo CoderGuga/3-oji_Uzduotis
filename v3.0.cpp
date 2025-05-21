@@ -1,14 +1,14 @@
 #include "helper.h"
 #include "helperFunctions.h"
 #include "cFunctions.h"
-#include "Vector.cpp"
 
 int main()
 {
+    
     try {
         string menu = "1 - ranka irasyti viska, 2 - generuoti pazymius, 3 - generuoti ir pazymius ir studentu vardus, pavardes, 4 - irasyti duomenis is failo, 5 - generuoti studentu failus, 6 - ruosiuoti sugeneruotus studentu failus, 7 - visu konteineriu testavimas, 8 - greitas testas, 9 - metodu testavimas, 10 - baigti darba: ";
 
-        int paskutinis = 10;
+        int paskutinis = 11;
 
         int stCon = CheckInt(menu, paskutinis);
         Vector<Stud> students;
@@ -122,9 +122,14 @@ int main()
     if (stCon == 9)
         MethodTest();
 
+    if (stCon == 10)
+        ARetartedTest();
+
     } catch (const std::exception& e) {
         cerr << "Ivyko klaida: " << e.what() << endl;
     }
+
+    cout<<"Programos pabaiga"<<endl;
 
     Pause();
 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <vector>
+//#include <vector>
 #include <sstream>
 #include <optional>
 #include <limits>
@@ -16,7 +16,7 @@
 #include <sstream>
 #include <list>
 #include <deque>
-#include "Vector.cpp"
+#include "Vector.h"
 
 using std::cout;
 using std::cin;
@@ -69,7 +69,7 @@ private:
 public:
 
     Stud();
-    ~Stud();
+    virtual ~Stud();
 
     //getters
     inline string getPavarde() const { return pavarde; }
