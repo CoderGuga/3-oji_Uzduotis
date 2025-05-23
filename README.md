@@ -1,6 +1,10 @@
 # 3-oji_Uzduotis
 
+std::vektor ir Vektor greičio palyginimas, užpildant ir perskirstant skirtingo greičio konteinerius:
+
 ![image](https://github.com/user-attachments/assets/1539f1fb-a493-4ff8-99af-d19bc4de7ce1)
+
+std::vektor ir Vektor perskirstymo (resize()) funkcijos panaudojimo kiekis pildant 100000000 konteinerį:
 
 ![image](https://github.com/user-attachments/assets/1a04590f-37cd-420f-818a-ab69d864211d)
 
