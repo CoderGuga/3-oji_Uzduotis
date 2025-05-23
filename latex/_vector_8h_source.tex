@@ -1,0 +1,160 @@
+\doxysection{Vector.\+h}
+\hypertarget{_vector_8h_source}{}\label{_vector_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VECTOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VECTOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <initializer\_list>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}\ \{}
+\DoxyCodeLine{00020\ private\ :}
+\DoxyCodeLine{00021\ \ \ \ \ T*\ dataVar;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ capacityVar;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ sizeVar;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_vector_aa0d46e34338185ed330102229ecb4b0e}{value\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ T;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{using\ }size\_type\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ size\_t;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ \ \ \ \ \ \ \ =\ std::ptrdiff\_t;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{using\ }reference\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ T\&;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{using\ }const\_reference\ \ \ \ \ \ \ \ =\ \textcolor{keyword}{const}\ T\&;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{using\ }pointer\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ T*;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{using\ }const\_pointer\ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{const}\ T*;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{using\ }iterator\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ T*;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{using\ }const\_iterator\ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{const}\ T*;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Constructors}}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}();\ \textcolor{comment}{//\ Default\ constructor}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}(\textcolor{keywordtype}{size\_t}\ count);\ \textcolor{comment}{//\ Fill\ constructor}}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}(\textcolor{keywordtype}{size\_t}\ count,\ \textcolor{keyword}{const}\ T\&\ value);\ \textcolor{comment}{//\ Fill\ with\ value}}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}(std::initializer\_list<T>\ init);\ \textcolor{comment}{//\ Initializer\ list\ constructor}}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}\&\ other);\ \textcolor{comment}{//\ Copy\ constructor}}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}(\mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}\&\&\ other)\ \textcolor{keyword}{noexcept};\ \textcolor{comment}{//\ Move\ constructor}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{template}\ <std::input\_iterator\ InputIt>}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}(InputIt\ first,\ InputIt\ last);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{\string~Vector}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Assignment\ operators}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}\&\ other);\ \textcolor{comment}{//\ Copy\ assignment}}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}\&\ operator=(\mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}\&\&\ other)\ \textcolor{keyword}{noexcept};\ \textcolor{comment}{//\ Move\ assignment}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}\&\ operator=(std::initializer\_list<T>\ init);\ \textcolor{comment}{//\ Initializer\ list\ assignment}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector_ae8dfa135fec20c87550383b3ae20dff0}{assign}}(\textcolor{keywordtype}{size\_t}\ count,\ \textcolor{keyword}{const}\ T\&\ value);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{template}\ <std::input\_iterator\ InputIt>}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector_ae8dfa135fec20c87550383b3ae20dff0}{assign}}(InputIt\ first,\ InputIt\ last);}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector_ae8dfa135fec20c87550383b3ae20dff0}{assign}}(std::initializer\_list<T>\ ilist);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vector_a2f639b492129a072de508b75b73fe569}{empty}}()\ const\ noexcept;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size()\ const\ noexcept;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ max\_size()\ const\ noexcept;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ capacity()\ const\ noexcept;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ reserve(\textcolor{keywordtype}{size\_t}\ new\_cap);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ shrink\_to\_fit();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector_a32ad98b135472b0ebc5d6cb3ae5d0085}{clear}}();}
+\DoxyCodeLine{00078\ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ iterator\ insert(iterator\ pos,\ const\ T\&\ value);}
+\DoxyCodeLine{00080\ \ \ \ \ iterator\ insert(iterator\ pos,\ \textcolor{keywordtype}{size\_t}\ count,\ const\ T\&\ value);}
+\DoxyCodeLine{00081\ \ \ \ \ template\ <std::input\_iterator\ InputIt>}
+\DoxyCodeLine{00082\ \ \ \ \ iterator\ insert(iterator\ pos,\ InputIt\ first,\ InputIt\ last);}
+\DoxyCodeLine{00083\ \ \ \ \ iterator\ insert(iterator\ pos,\ T\&\&\ value);}
+\DoxyCodeLine{00084\ \ \ \ \ iterator\ insert(iterator\ pos,\ std::initializer\_list<T>\ ilist);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ iterator\ erase(iterator\ pos);}
+\DoxyCodeLine{00087\ \ \ \ \ iterator\ erase(const\_iterator\ pos);}
+\DoxyCodeLine{00088\ \ \ \ \ iterator\ erase(iterator\ first,\ iterator\ last);}
+\DoxyCodeLine{00089\ \ \ \ \ iterator\ erase(const\_iterator\ first,\ const\_iterator\ last);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ push\_back(const\ T\&\ value);}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ push\_back(T\&\&\ value);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ pop\_back();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ template\ <typename...\ Args>}
+\DoxyCodeLine{00097\ \ \ \ \ iterator\ emplace(iterator\ pos,\ Args\&\&...\ args);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ template\ <typename...\ Args>}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ emplace\_back(Args\&\&...\ args);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ resize(\textcolor{keywordtype}{size\_t}\ new\_size);}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ resize(\textcolor{keywordtype}{size\_t}\ new\_size,\ const\ T\&\ value);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ swap(\mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}\&\ other)\ noexcept;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ T\&\ \mbox{\hyperlink{class_vector_a7495aa482571ad81f957802387770123}{at}}(\textcolor{keywordtype}{size\_t}\ index);}
+\DoxyCodeLine{00109\ \ \ \ \ const\ T\&\ \mbox{\hyperlink{class_vector_a7495aa482571ad81f957802387770123}{at}}(\textcolor{keywordtype}{size\_t}\ index)\ const;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ T\&\ front();}
+\DoxyCodeLine{00112\ \ \ \ \ T\&\ back();}
+\DoxyCodeLine{00113\ \ \ \ \ const\ T\&\ front()\ const;}
+\DoxyCodeLine{00114\ \ \ \ \ const\ T\&\ back()\ const;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ T\&\ operator[](\textcolor{keywordtype}{size\_t}\ index);}
+\DoxyCodeLine{00117\ \ \ \ \ const\ T\&\ operator[](\textcolor{keywordtype}{size\_t}\ index)\ const;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ T*\ data()\ noexcept;}
+\DoxyCodeLine{00120\ \ \ \ \ const\ T*\ data()\ const\ noexcept;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00124\ \ \ \ \ iterator\ \mbox{\hyperlink{class_vector_a43711ecf8c3dce2124d08126b9654aef}{begin}}()\ noexcept;}
+\DoxyCodeLine{00125\ \ \ \ \ const\_iterator\ \mbox{\hyperlink{class_vector_a43711ecf8c3dce2124d08126b9654aef}{begin}}()\ const\ noexcept;}
+\DoxyCodeLine{00126\ \ \ \ \ const\_iterator\ cbegin()\ const\ noexcept;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ iterator\ end()\ noexcept;}
+\DoxyCodeLine{00129\ \ \ \ \ const\_iterator\ end()\ const\ noexcept;}
+\DoxyCodeLine{00130\ \ \ \ \ const\_iterator\ cend()\ const\ noexcept;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ std::reverse\_iterator<iterator>\ rbegin()\ noexcept;}
+\DoxyCodeLine{00133\ \ \ \ \ std::reverse\_iterator<const\_iterator>\ rbegin()\ const\ noexcept;}
+\DoxyCodeLine{00134\ \ \ \ \ std::reverse\_iterator<const\_iterator>\ crbegin()\ const\ noexcept;}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ std::reverse\_iterator<iterator>\ rend()\ noexcept;}
+\DoxyCodeLine{00137\ \ \ \ \ std::reverse\_iterator<const\_iterator>\ rend()\ const\ noexcept;}
+\DoxyCodeLine{00138\ \ \ \ \ std::reverse\_iterator<const\_iterator>\ crend()\ const\ noexcept;}
+\DoxyCodeLine{00139\ \};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ Non-\/member\ function\ declarations:}}
+\DoxyCodeLine{00143\ template\ <typename\ T>}
+\DoxyCodeLine{00144\ \textcolor{keywordtype}{bool}\ operator==(const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ lhs,\ const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ rhs);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ template\ <typename\ T>}
+\DoxyCodeLine{00147\ \textcolor{keywordtype}{bool}\ operator!=(const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ lhs,\ const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ rhs);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ template\ <typename\ T>}
+\DoxyCodeLine{00150\ \textcolor{keywordtype}{bool}\ operator<(const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ lhs,\ const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ rhs);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ template\ <typename\ T>}
+\DoxyCodeLine{00153\ \textcolor{keywordtype}{bool}\ operator<=(const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ lhs,\ const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ rhs);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ template\ <typename\ T>}
+\DoxyCodeLine{00156\ \textcolor{keywordtype}{bool}\ operator>(const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ lhs,\ const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ rhs);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ template\ <typename\ T>}
+\DoxyCodeLine{00159\ \textcolor{keywordtype}{bool}\ operator>=(const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ lhs,\ const\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ rhs);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ template\ <typename\ T>}
+\DoxyCodeLine{00162\ \textcolor{keywordtype}{void}\ swap(\mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ a,\ \mbox{\hyperlink{class_vector_a39d6069675db4ecfc1ab81d440da759a}{Vector}}<T>\&\ b)\ noexcept;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#include\ "{}Vector.tpp"{}}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

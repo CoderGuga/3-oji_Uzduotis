@@ -1,0 +1,120 @@
+\doxysection{helper.\+h}
+\hypertarget{helper_8h_source}{}\label{helper_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ HELPER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ HELPER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}Vector.h"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{using\ }std::cout;}
+\DoxyCodeLine{00022\ \textcolor{keyword}{using\ }std::cin;}
+\DoxyCodeLine{00023\ \textcolor{keyword}{using\ }std::endl;}
+\DoxyCodeLine{00024\ \textcolor{keyword}{using\ }std::string;}
+\DoxyCodeLine{00025\ \textcolor{keyword}{using\ }std::ifstream;}
+\DoxyCodeLine{00026\ \textcolor{keyword}{using\ }std::ofstream;}
+\DoxyCodeLine{00027\ \textcolor{keyword}{using\ }std::cerr;}
+\DoxyCodeLine{00028\ \textcolor{keyword}{using\ }std::getline;}
+\DoxyCodeLine{00029\ \textcolor{keyword}{using\ namespace\ }std::chrono;}
+\DoxyCodeLine{00030\ \textcolor{keyword}{using\ }std::sort;}
+\DoxyCodeLine{00031\ \textcolor{keyword}{using\ }std::optional;}
+\DoxyCodeLine{00032\ \textcolor{keyword}{using\ }std::stringstream;}
+\DoxyCodeLine{00033\ \textcolor{keyword}{using\ }std::list;}
+\DoxyCodeLine{00034\ \textcolor{keyword}{using\ }std::deque;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00038\ optional<T>\ string\_to(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&\ s);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{int}\ CheckInt(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ text,\ \textcolor{keywordtype}{int}\ max\ =\ 0);}
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{int}\ TypeInt(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ text,\ \textcolor{keywordtype}{int}\ max\ =\ 0);}
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{string}\ TypeString(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ prompt);}
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{double}\ Median(\mbox{\hyperlink{class_vector}{Vector<int>}}\ numbers);}
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{double}\ Average(\mbox{\hyperlink{class_vector}{Vector<int>}}\ numbers);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ MAX\_GRADES;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{class\ }Zmogus\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ pavarde;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ vardas;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ Zmogus()\ \{pavarde\ =\ \textcolor{stringliteral}{"{}Pavardenis"{}};\ vardas\ =\ \textcolor{stringliteral}{"{}Vardenis"{}};\};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ Zmogus(\textcolor{keyword}{const}\ Zmogus\&\ other)\ :\ pavarde(other.pavarde),\ vardas(other.vardas)\ \{\}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ Zmogus(Zmogus\&\&\ other)\ :\ pavarde(std::move(other.pavarde)),\ vardas(std::move(other.vardas))\ \{\}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ KiekGavauIsEgz()\ =\ 0;}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }Stud\ :\ \textcolor{keyword}{public}\ Zmogus\ \{}
+\DoxyCodeLine{00061\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{int}\ egz;}
+\DoxyCodeLine{00063\ \ \ \ \ Vector<int>\ ndVector;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{int}*\ nd;}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{int}\ nd\_count;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{float}\ galutinisVid;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{float}\ galutinisMed;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ Stud();}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~Stud();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//getters}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{string}\ getPavarde()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ pavarde;\ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{string}\ getVardas()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ vardas;\ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ getEgz()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ egz;\ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{inline}\ Vector<int>\ getNdVector()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ ndVector;\ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}*\ getNd()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ nd;\ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ getNdCount()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ nd\_count;\ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ getGalutinisVid()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ galutinisVid;\ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ getGalutinisMed()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ galutinisMed;\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//setters}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setPavarde(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ pavarde)\ \{\ this-\/>pavarde\ =\ pavarde;\ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setVardas(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ vardas)\ \{\ this-\/>vardas\ =\ vardas;\ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setEgz(\textcolor{keywordtype}{int}\ egz)\ \{\ this-\/>egz\ =\ egz;\ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setNdVector(\textcolor{keyword}{const}\ Vector<int>\&\ ndVector)\ \{\ this-\/>ndVector\ =\ ndVector;\ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setNd(\textcolor{keywordtype}{int}*\ nd,\ \textcolor{keywordtype}{int}\ count)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ this-\/>nd;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ this-\/>nd\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}[count];}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ std::copy(nd,\ nd\ +\ count,\ this-\/>nd);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ this-\/>nd\_count\ =\ count;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setGalutinisVid(\textcolor{keywordtype}{float}\ galutinisVid)\ \{\ this-\/>galutinisVid\ =\ galutinisVid;\ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setGalutinisMed(\textcolor{keywordtype}{float}\ galutinisMed)\ \{\ this-\/>galutinisMed\ =\ galutinisMed;\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ clearNdVector()\ \{this-\/>ndVector.clear();\ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ addNd(\textcolor{keywordtype}{int}\ nd)\ \{this-\/>ndVector.push\_back(nd);\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//rule\ of\ 5}}
+\DoxyCodeLine{00102\ \ \ \ \ Stud(\textcolor{keyword}{const}\ Stud\&\ other);}
+\DoxyCodeLine{00103\ \ \ \ \ Stud\&\ operator=(\textcolor{keyword}{const}\ Stud\&\ other);}
+\DoxyCodeLine{00104\ \ \ \ \ Stud(Stud\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00105\ \ \ \ \ Stud\&\ operator=(Stud\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ operator<<(std::ostream\&\ os,\ \textcolor{keyword}{const}\ Stud\&\ stud);}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{friend}\ std::istream\&\ operator>>(std::istream\&\ is,\ Stud\&\ student);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ KiekGavauIsEgz()\textcolor{keyword}{\ override\ }\{cout\ <<\ \textcolor{stringliteral}{"{}Is\ egzamino\ gavau"{}}\ <<\ egz\ <<\ endl;\}}
+\DoxyCodeLine{00111\ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keywordtype}{void}\ MethodTest();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
