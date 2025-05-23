@@ -15,10 +15,30 @@ Vektor konteinerio funkcijų pavyzdžiai:
 
 Ši funkcija prideda naują elementą į vektoriaus pabaigą.
 
-3. Prieiga prie elemento su operatoriumi []
-   ![image](https://github.com/user-attachments/assets/8e723be6-b9ec-4e4f-9aa8-0a7f48995f02)
+
+2. Prieiga prie elemento su operatoriumi []
+
+![image](https://github.com/user-attachments/assets/8e723be6-b9ec-4e4f-9aa8-0a7f48995f02)
+   
 Operatorius [] leidžia pasiekti vektoriaus elementą pagal jo indeksą.
 
-4. Dydžio keitimas su resize
+
+3. Dydžio keitimas su resize
+
 ![image](https://github.com/user-attachments/assets/c61046cb-a598-46ea-925c-46648d564248)
+
 Funkcija resize pakeičia vektoriaus dydį. Jei naujas dydis didesnis, nauji elementai užpildomi nurodyta reikšme.
+
+
+4. Priskyrimo operatorius operator=
+
+![image](https://github.com/user-attachments/assets/c44337df-f116-41ae-99a2-a71d0a3e57f0)
+
+Operatorius = leidžia priskirti vieno vektoriaus reikšmes kitam.
+
+
+5. Lyginimo operatorius operator==
+
+![image](https://github.com/user-attachments/assets/128bcfd3-171b-4442-ba1a-84f613afe7f6)
+
+Operatorius == patikrina, ar du vektoriai yra identiški (turi tą patį dydį ir tas pačias reikšmes).
