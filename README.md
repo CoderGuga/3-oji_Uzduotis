@@ -9,14 +9,16 @@
 
 Vektor konteinerio funkcijų pavyzdžiai:
 
-1. Elemento pridėjimas su push_back \n
-   ![image](https://github.com/user-attachments/assets/b0422371-4bf9-4f8a-be80-db51f596082f) \n
+1. Elemento pridėjimas su push_back
+   
+![image](https://github.com/user-attachments/assets/b0422371-4bf9-4f8a-be80-db51f596082f)
+
 Ši funkcija prideda naują elementą į vektoriaus pabaigą.
 
-2. Prieiga prie elemento su operatoriumi []
+3. Prieiga prie elemento su operatoriumi []
    ![image](https://github.com/user-attachments/assets/8e723be6-b9ec-4e4f-9aa8-0a7f48995f02)
 Operatorius [] leidžia pasiekti vektoriaus elementą pagal jo indeksą.
 
-3. Dydžio keitimas su resize
+4. Dydžio keitimas su resize
 ![image](https://github.com/user-attachments/assets/c61046cb-a598-46ea-925c-46648d564248)
 Funkcija resize pakeičia vektoriaus dydį. Jei naujas dydis didesnis, nauji elementai užpildomi nurodyta reikšme.
