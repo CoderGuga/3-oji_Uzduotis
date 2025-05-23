@@ -8,6 +8,8 @@ std::vektor ir Vektor perskirstymo (resize()) funkcijos panaudojimo kiekis pilda
 
 ![image](https://github.com/user-attachments/assets/1a04590f-37cd-420f-818a-ab69d864211d)
 
+std::vektor ir Vektor greičių palyginimas atliekant įvairias įprastines funkcijas:
+
 ![image](https://github.com/user-attachments/assets/ed3650a6-60f5-49e7-b134-fe8051d0019a)
 
 
