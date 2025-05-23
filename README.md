@@ -9,8 +9,8 @@
 
 Vektor konteinerio funkcijų pavyzdžiai:
 
-1. Elemento pridėjimas su push_back
-   ![image](https://github.com/user-attachments/assets/b0422371-4bf9-4f8a-be80-db51f596082f)
+1. Elemento pridėjimas su push_back \n
+   ![image](https://github.com/user-attachments/assets/b0422371-4bf9-4f8a-be80-db51f596082f) \n
 Ši funkcija prideda naują elementą į vektoriaus pabaigą.
 
 2. Prieiga prie elemento su operatoriumi []
