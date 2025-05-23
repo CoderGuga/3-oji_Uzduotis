@@ -30,6 +30,8 @@ Vector<T>::Vector(std::initializer_list<T> init)
 // Destructor
 template <typename T>
 Vector<T>::~Vector() {
+    for (size_t i = 0; i < sizeVar; ++i)
+        dataVar[i].~T();
     delete[] dataVar;
 }
 
