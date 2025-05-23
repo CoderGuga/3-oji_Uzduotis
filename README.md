@@ -7,7 +7,9 @@
 ![image](https://github.com/user-attachments/assets/ed3650a6-60f5-49e7-b134-fe8051d0019a)
 
 
-Vektor konteinerio funkcijų pavyzdžiai:
+
+
+Keli Vektor konteinerio funkcijų pavyzdžiai:
 
 1. Elemento pridėjimas su push_back
    
