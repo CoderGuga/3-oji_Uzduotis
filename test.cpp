@@ -249,3 +249,57 @@ TEST_CASE("Vector<Stud>: Iterators") {
     ++it;
     REQUIRE(it->getVardas() == "B");
 }
+
+TEST_CASE("Vector: Clear and reuse") {
+    Vector<int> v = {1, 2, 3, 4};
+    v.clear();
+    REQUIRE(v.empty());
+    REQUIRE(v.size() == 0);
+    v.push_back(42);
+    REQUIRE(v.size() == 1);
+    REQUIRE(v[0] == 42);
+}
+
+TEST_CASE("Vector: Swap contents") {
+    Vector<int> a = {1, 2, 3};
+    Vector<int> b = {4, 5};
+    a.swap(b);
+    REQUIRE(a.size() == 2);
+    REQUIRE(b.size() == 3);
+    REQUIRE(a[0] == 4);
+    REQUIRE(b[2] == 3);
+}
+
+TEST_CASE("Vector: Self-assignment and self-move") {
+    Vector<int> v = {1, 2, 3};
+    v = v; // self-assignment
+    REQUIRE(v.size() == 3);
+    v = std::move(v); // self-move
+    REQUIRE(v.size() == 3);
+    REQUIRE(v[0] == 1);
+}
+
+TEST_CASE("Vector: Reserve and shrink_to_fit") {
+    Vector<int> v;
+    v.reserve(50);
+    REQUIRE(v.capacity() >= 50);
+    for (int i = 0; i < 10; ++i) v.push_back(i);
+    v.shrink_to_fit();
+    REQUIRE(v.capacity() == v.size());
+}
+
+TEST_CASE("Vector: Emplace and emplace_back") {
+    Vector<std::pair<int, int>> v;
+    v.emplace_back(1, 2);
+    v.emplace(v.begin(), 3, 4);
+    REQUIRE(v.size() == 2);
+    REQUIRE(v[0].first == 3);
+    REQUIRE(v[1].second == 2);
+}
+
+TEST_CASE("Vector: Out of range exceptions") {
+    Vector<int> v = {1, 2, 3};
+    REQUIRE_THROWS_AS(v.at(10), std::out_of_range);
+    REQUIRE_THROWS_AS(v.erase(v.end()), std::out_of_range);
+    REQUIRE_THROWS_AS(v.insert(v.end() + 1, 5), std::out_of_range);
+}
