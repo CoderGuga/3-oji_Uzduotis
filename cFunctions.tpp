@@ -443,23 +443,3 @@ void QuickTest(string filename1, string filename2)
     std::chrono::duration<double> duration = high_resolution_clock::now() - start;
     cout << "Bendrai vector uztruko " << (duration/5).count() << " sekundes.\n" << endl;
 }
-
-void ARetartedTest()
-{
-    Stud stud;
-    cout << "created a stud"<<endl;
-    Vector<int> vec;
-    cout << "created a int Vector"<<endl;
-    vec.push_back(1);
-    cout << "push backed"<<endl;
-    vec.push_back(2);
-    cout << "push backed 2"<<endl;
-    vec.reserve(200);
-    cout << "reserved 200"<<endl;
-    vec.clear();
-    cout <<"vector cleared"<<endl;
-    for (int i = 0; i < 50000; i++) {
-        vec.push_back(i);
-        //cout << "pushed " << vec[i] <<endl; 
-    }
-}
